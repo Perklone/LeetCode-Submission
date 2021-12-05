@@ -10,17 +10,12 @@ public:
         memset(arr2, 0, sizeof(arr2));
         for(int i=0;i<x;i++){
             arr[s[i] - 'a']++;
-            
-        } 
-         for(int a=0;a<y;a++){
-            arr2[t[a] - 'a']++;
-            
+            arr2[t[i] - 'a']++;
         } 
         for(int i=0;i<26;i++){
             if(arr[i]!=arr2[i]){
                 return false;
             }
-            else continue;
         }
     return true;
         
