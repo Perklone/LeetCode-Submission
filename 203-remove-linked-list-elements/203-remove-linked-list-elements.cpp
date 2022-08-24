@@ -21,9 +21,11 @@ public:
         ListNode* prev = dum;
         while(curr!=NULL) {
             if(curr->val == val) {
-                prev->next = curr->next;
-                // delete curr;
+                ListNode* temp = curr;
+                prev->next = temp->next;
                 curr = curr->next;
+                delete temp;
+                
                 
             }
             else{
