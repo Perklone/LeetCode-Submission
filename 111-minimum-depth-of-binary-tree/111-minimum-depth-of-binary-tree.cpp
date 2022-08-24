@@ -24,7 +24,7 @@ public:
             int levelsize = que.size();
             for(int i=0;i<levelsize;i++) {
                 TreeNode* curr = que.front();
-                que.pop();
+                
                 if(curr->left == NULL && curr->right == NULL) {
                     return res;
                 }
@@ -34,8 +34,9 @@ public:
                 if (curr->right != NULL) {
                     que.push(curr->right);
                 }
+                que.pop();
             }
         }
-        return res;
+        return -1;
     }
 };
