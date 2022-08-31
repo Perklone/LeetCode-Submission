@@ -21,6 +21,7 @@ public:
         
         while(start<=end) {
             int mid = start + (end-start)/2;
+            cout << mid << endl;
             if(nums[mid]>=target) {
                 end = mid-1;
             }else {
