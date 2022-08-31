@@ -9,13 +9,8 @@ public:
         int rank = 0;
         unordered_map<int,int>um;
         for(int i=0;i<len;i++ ){
-            if(arr2[i]!=temp) {
-                temp = arr2[i];
-                rank++;
-                um[arr2[i]] = rank;
-            }
-            else {
-                um[arr2[i]] = rank;
+            if(um.find(arr2[i]) == um.end()) {
+                um[arr2[i]] = ++rank;
             }
         }
         for(int i = 0;i<len;i++){
