@@ -13,7 +13,7 @@ class Solution {
 public:
     TreeNode* mergeTrees(TreeNode* root1, TreeNode* root2) {
         if(root1 == NULL && root2 == NULL) {
-            return root1;
+            return NULL;
         }
         if(root1 != NULL && root2 == NULL) {
             return root1;
