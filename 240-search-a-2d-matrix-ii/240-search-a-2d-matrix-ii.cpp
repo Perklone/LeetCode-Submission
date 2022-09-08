@@ -1,6 +1,7 @@
 class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        ios_base::sync_with_stdio(false);
         int row = matrix.size()-1;
         int col = 0;
         
