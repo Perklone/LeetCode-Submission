@@ -8,8 +8,7 @@ public:
         return a[0] < b[0];
     }
     int numberOfWeakCharacters(vector<vector<int>>& properties) {
-        int atk = properties[0][0];
-        int def = properties[0][1];
+        ios_base::sync_with_stdio(false);
         int len = properties.size();
         int res = 0;
         sort(properties.begin(),properties.end(),sortcol);
