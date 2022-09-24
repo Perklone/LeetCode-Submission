@@ -12,23 +12,24 @@
 class Solution {
 public:
     vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
-        vector<vector<int>> res;
-        vector<int> vec;
-        traverse(root,vec,res,targetSum);
-        return res;
+        vector<vector<int>> vec;
+        vector<int> ans;
+        
+        dfs(root,targetSum,vec,ans);
+        return vec;
     }
-    void traverse(TreeNode* root, vector<int>&vec,vector<vector<int>>&res,int targetSum) {
+    void dfs(TreeNode* root, int targetSum, vector<vector<int>>&vec,vector<int>&ans) {
         if(root == NULL) {
             return;
         }
-        vec.push_back(root->val);
-        if(targetSum-root->val == 0 && root->left == NULL && root->right == NULL){
-            res.push_back(vec);
+        ans.push_back(root->val);
+        if(root->left == NULL && root->right == NULL && targetSum == root->val) {
+            vec.push_back(ans);
         }
-        else {
-            traverse(root->left,vec,res,targetSum-root->val);
-            traverse(root->right,vec,res,targetSum-root->val);
-        }
-        vec.pop_back();
+        
+        dfs(root->left,targetSum-(root->val),vec,ans);
+        dfs(root->right,targetSum-(root->val),vec,ans);
+        ans.pop_back();
+        
     }
 };
