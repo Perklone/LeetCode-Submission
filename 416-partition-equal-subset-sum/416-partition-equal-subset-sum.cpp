@@ -1,15 +1,38 @@
 class Solution {
 public:
-    int8_t dp[201][10001] = {[0 ... 200] = {[0 ... 10000] = -1}};  // all initialized to -1 (use dynamic vector to generalize to higher array size & possible sums)
     bool canPartition(vector<int>& nums) {
-        int totalSum = accumulate(begin(nums), end(nums), 0);
-        if(totalSum & 1) return false;
-        return subsetSum(nums, totalSum / 2);
+        
+        int len = nums.size();
+        int sum = 0;
+        for(int i = 0;i < len;i++) {
+            sum+=nums[i];
+        }
+        if(sum%2 != 0) {
+            return false;
+        }
+        vector<vector<int>> vec(nums.size(),(vector<int>(sum/2+1,-1)));
+        return partition(nums,sum/2,0,vec);
     }
-    bool subsetSum(vector<int>& nums, int sum, int i = 0) {
-        if(sum == 0) return true;
-        if(i >= size(nums) || sum < 0) return false; 
-        if(dp[i][sum] != -1) return dp[i][sum];
-        return dp[i][sum] = subsetSum(nums, sum - nums[i], i + 1) || subsetSum(nums, sum, i + 1);
+    bool partition(vector<int>&nums, int sum, int index,vector<vector<int>>&dp) {
+        if(sum == 0) {
+            return true;
+        }
+        if(nums.size() == 0 || index>=nums.size()) {
+            return false;
+        }
+        if(dp[index][sum] == -1) {
+          if(nums[index] <= sum) {
+            if(partition(nums,sum-nums[index],index + 1,dp)) {
+                    dp[index][sum] = 1;
+                    return true;
+                }
+            }
+            dp[index][sum] = partition(nums,sum,index+1,dp) ? 1 : 0;
+        }
+        
+        
+        return dp[index][sum] == 1 ? true: false;
     }
+    
+    
 };
